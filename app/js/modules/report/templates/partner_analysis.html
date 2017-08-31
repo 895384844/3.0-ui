@@ -1,0 +1,91 @@
+<div class="content content-flex" ng-controller="PartnerAnalysisCtrl" style="padding: 0;">
+	<!--伴随分析-->
+	<form class="form form-inline " ng-class="{'form-flex':currentW,'form-flex-hide':changeW}" role="form" name="form" height-bind=".grid" id="par_resize">
+		<div class="row addBorder scroll-y" style="position: relative; height:100%">
+			<div class="toogleLeftState " ng-class="{'':currentW,'dis_none':changeW}">
+				<div class="col-lg-12" style="height: 100%;">
+					<div class="inf_box" style="height: 38px;">
+						<div class="toogle-input">
+							<div class="radio" style="margin-bottom: 8px;margin-right: 10px">
+								<label><input type="radio" name="atype" value="known" ng-model="query.atype" ng-checked="known">已知轨迹</label>
+								<label style="margin-left: 5px"><input type="radio" name="atype" ng-checked="unknown" value="unknown" ng-model="query.atype">未知轨迹</label>
+							</div>
+						</div>
+					</div>
+					<div class="inf_box" style="position: relative;">
+						<div style="height:80px;">
+							<div class="toogle-input">
+								<div class="input-group w100">
+									<span class="input-group-addon add-bg" style="padding: 3px;">类型</span>
+									<div class="form-control" style="padding: 5px;">
+										<input type="radio" name="known" value="imsi" ng-model="query.type" ng-checked="true" required>IMSI <input type="radio" name="known" value="imei" ng-model="query.type">IMEI
+									</div>
+								</div>
+							</div>
+							<div class="toogle-input">
+								<div class="input-group import w100">									
+									<input type="text" class="form-control" ng-model="query.serialNumber" name="value" required maxlength="15">
+									<span class="input-group-addon add-bg" style="padding: 3px;width: 76px;color:#dd4b39">必填*</span>
+								</div>
+							</div>
+							<div class="toogle-input">
+								<div class="input-group w100">
+									<span class="input-group-addon add-bg">轨迹点时间偏差</span>
+									<input type="text" class="form-control" ng-model="notice.phone" placeholder="单位为分钟">
+								</div>
+							</div>
+							<div class="toogle-input">
+								<div class="input-group w100">
+									<button ng-if="query.atype=='known'" class="btn btn-primary" ng-click="addCondition()" style="float: left;width: 48%;">
+										<span class="glyphicon glyphicon-plus"></span>
+										伴随条件
+									</button>
+									<button class="btn btn-primary" ng-disabled="btn.status" ng-click="search()"  style="width: 48%;float: right;">
+										<span class="glyphicon glyphicon-search"></span>
+										查询
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="qualification" ng-if="query.atype=='known'" style="margin-top: -10px;-webkit-flex:1; display: -webkit-flex; -webkit-flex-direction:column;">
+							<div class="top-menu">
+								<span>采集设备</span>
+								<span>开始</span>
+								<span>结束</span>
+							</div>
+							<ul>
+								<li>
+									<div class="input-group" style="width: 100%;">
+										<select class="pd-right col-lg-3" ng-model="collsionPoint.groupId" name="name" required>
+											<option ng-repeat="group in groupArray" value="{{group.id}}">{{group.groupName}}</option>
+										</select>
+										<input class=" datetime col-lg-4" placeholder="开始时间" date-time-selector="start" ng-model="query.time__range[0]" ignore-empty-value/>
+										<input class="datetime col-lg-4" placeholder="结束时间" date-time-selector="start" ng-model="query.time__range[1]" ignore-empty-value/>
+										
+									</div>
+								</li>
+								
+								<li ng-repeat="person in list" style="height: 23px;" >
+									<div ng-class="input-group">
+										<select class="pd-right col-lg-3" ng-model="collsionPoint.groupId" name="name" required>
+											<option ng-repeat="group in groupArray" value="{{group.id}}">{{group.groupName}}</option>
+										</select>
+										<input class=" datetime col-lg-4" placeholder="开始时间" date-time-selector="start" ng-model="query.time__range[0]" ignore-empty-value/>
+										<input class="datetime col-lg-4" placeholder="结束时间" date-time-selector="start" ng-model="query.time__range[1]" ignore-empty-value/>										
+									</div>
+									<button ng-click="delEle($index)" ng-show="$index>=0"><i class="fa fa-trash"></i></button>
+								</li>
+							</ul>
+						</div>					
+					</div>
+				</div>
+			</div>
+			<div ng-class="{'toogle-width':currentW,'toogle-width-hide':changeW}" ng-click="toogleLeftState()">
+				<p></p>
+			</div>
+		</div>
+	</form>
+	<div class="right-grid" style="overflow: hidden;">
+		<div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns ui-grid-move-columns auto-height class="grid"></div>
+	</div>
+</div>

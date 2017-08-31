@@ -1,0 +1,16 @@
+<div class="content content-column" ng-controller="SystemLicenseCtrl">
+	<div class="condition" style="border: 1px solid #ccc;border-bottom: none;height: 74px; overflow: hidden;">
+		<div class="row">
+			<div class="col-md-3">
+                <input type="file" ng-model="deviceFile" ng-show="false" ngf-select ngf-change="onFileSelect($file)">
+		        <button id="dialog-btn-primary" type="button" class="btn btn-primary" onclick="$('input[type=file]').click();">
+		    		<i ng-show="isWaiting" class="fg-loginform-submit__waiting icon-waiting"></i>
+		    		<i ng-show="!isWaiting" class="icon-folder-open"></i>选择导入文件
+		    	</button>
+	    	</div>
+        </div>
+	</div>	
+	<div class="ng-grid-container grid">
+		<div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns ui-grid-move-columns auto-height style="height: 100%;"></div>
+	</div>
+</div>

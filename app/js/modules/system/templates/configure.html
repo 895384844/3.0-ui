@@ -1,0 +1,197 @@
+<div ng-controller="SystemConfigureCtrl" style="overflow: hidden;">
+	<div style="width: 100%;">
+		<!-------------------------------------短信设置-begin--------------------------------->
+		<div ng-controller="SetMsgCtrl" style="width: 60%; float: left; border: 1px solid #d2d2d2;">
+			<div class="system-box" style="border-top: 5px solid #F39C12;position: relative; background: #f4f4f4;display: -webkit-flex; -webkit-flex-direction:column;">
+				<div class="system-topfont" style="height: 50px; background: #f4f4f4;">
+					<p class="ml-20">短信设备配置</p>
+				</div>
+				<div style="background: #f7f7f7; -webkit-flex:1;">
+					<form class="form-horizontal" role="form" name="form">
+						<div class="form-group safeSet">
+						    <label class="col-lg-3 col-sm-3  control-label font-line">短信发送端口</label>
+						    <div class="col-lg-8 col-sm-8">
+						    	<input type="text" class="form-control" name="mesport" ng-model="mes.message_port" required>
+						    </div>
+						    <!--<span class="tips" ng-show="form.mesport.$error.required">*<span class="user-tips">必填</span></span>-->
+						</div>
+						<div style="clear: both;"></div>
+						<div class="form-group safeSet">
+						    <label class="col-lg-3 col-sm-3  control-label font-line">测试手机号</label>
+						    <div class="col-lg-8 col-sm-8">
+						    	<input type="number" id="mytest" name="phone_number" class="form-control" ng-model="mes.phone_number" ng-minlength="11" ng-maxlength="11" pattern="1[0-9]{10}" required>
+						    </div>
+						    <!--<span class="tips" ng-show="form.phone_number.$error.required">*<span class="user-tips">必填</span></span>
+						    <span class="tips user-tips" ng-show="form.phone_number.$error.number">格式有误</span>
+				            <span class="tips user-tips" ng-show="form.phone_number.$error.minlength">格式有误</span>
+				            <span class="tips user-tips" ng-show="form.phone_number.$error.maxlength">格式有误</span>-->
+						</div>
+						<div style="clear: both;"></div>
+						<div class="form-group safeSet">
+						    <label class="col-lg-3 col-sm-3  control-label font-line">波特率</label>
+						    <div class="col-lg-8 col-sm-8">
+						    	<select class="form-control" name="baudrate" ng-model="query.baudrate">
+									<option selected >9600</option>
+									<option>115200</option>
+								</select>
+						    </div>
+						</div>
+						<div style="clear: both;"></div>
+						<div class="form-group safeSet">
+						    <label class="col-lg-3 col-sm-3  control-label font-line">网络制式</label>
+						    <div class="col-lg-8 col-sm-8">
+						    	<select class="form-control" name="network_type" ng-model="query.network_type" >
+						      	<option value="1">GSM (移动 / 联通)</option>
+						      	<option value="2">CDMA (电信)</option>
+						      </select>
+						    </div>
+						</div>
+						<div style="clear: both;"></div>
+						<div class="form-group safeSet">
+					    <label class="col-lg-3 col-sm-3  control-label font-line">短信内容</label>
+					    <div class="col-lg-8 col-sm-8">
+					    	<textarea class="form-control" name="content" rows="3" ng-model="query.content" maxlength="30" placeholder="最多输入三十字"></textarea>
+					    </div>
+					</form>
+				</div>
+				</div>
+				<div class="system-btnsure" style="height: 65px; background: #f4f4f4;">
+					<button class="btn btn-primary ml-20" style="width: 75px;" ng-click="sureMsg()">测试</button>
+					<button class="btn btn-primary" style="width: 75px;" ng-click="sureMsg()">确定</button>
+				</div>
+			</div>
+		</div>
+		<!-------------------------------------短信设置-end-------------------------------------------->
+		
+		<!-------------------------------------地图设置-begin------------------------------------------>
+		<div ng-controller="SetMapCtrl" class="system-ml" style="width: 38%; border: 1px solid #d2d2d2;">
+			<div class="system-box" style="border-top: 5px solid #DD4B39; position: relative; background: #f4f4f4;display: -webkit-flex; -webkit-flex-direction:column;">
+				<div class="system-topfont">
+					<p class="ml-20">地图设置</p>
+				</div>
+				<div style="background: #f7f7f7; -webkit-flex:1;">
+					<div class="form-group safeSet">
+					    <label class="col-lg-1 col-sm-1  control-label font-line col-lg-offset-3 col-sm-offset-3">离线</label>
+					    <div class="col-lg-1 col-sm-1" style="line-height: 34px; margin-right: 10px;">
+					    	<input type="radio" name="line" id="offlineMap"/>
+					    </div>
+					    <label class="col-lg-1 col-sm-1  control-label font-line">在线</label>
+					    <div class="col-lg-1 col-sm-1" style="line-height: 34px;">
+					    	<input type="radio" name="line" id="onlineMap"/>
+					    </div>
+					</div>
+					<div style="clear: both;"></div>
+					<div class="form-group safeSet">
+					    <label class="col-lg-3 col-sm-3  control-label font-line">中心点</label>
+					    <div class="col-lg-9 col-sm-9">
+					    	<div class="row">
+					    		<div class="col-lg-6 col-md-6">
+							      <input type="text" class="form-control" ng-model="query.map_center_lon" placeholder="经度">
+							    </div>
+							    <div class="col-lg-6 col-md-6">
+							      <input type="text" class="form-control" ng-model="query.map_center_lat" placeholder="纬度">
+							    </div>
+					    	</div>
+					    </div>
+					</div>
+					<div style="clear: both;"></div>
+					<div class="form-group safeSet">
+					    <label class="col-lg-3 col-sm-3  control-label font-line">默认缩放等级</label>
+					    <div class="col-lg-9 col-sm-9">
+					    	<input type="text" class="form-control" ng-model="query.map_focus_default" placeholder="默认"/>
+					    </div>
+					</div>
+				</div>
+				<div class="system-btnsure" style="height: 65px; background: #f4f4f4;">
+					<button class="btn btn-primary ml-20" style="width: 75px;" ng-click="sureMap()">保存</button>
+				</div>
+			</div>
+		</div>
+		<!-------------------------------------地图设置-end----------------------------------->
+		
+		<!-------------------------------------常驻人口规则设置-begin----------------------------------->
+		</div>
+		<div style="clear: both;"></div>
+		<div ng-controller="SetResidenCtrl" class="w100">
+			<div class="box box-info h100 dis-flex-c bkf7" style="border-top:5px solid #3e88b5;margin-top: 20px;">
+				<div class="system-topfont">
+					<p class="ml-20">常驻人口规则设置</p>
+				</div>
+				<div class="box-body flex-1">
+					<div class="toogle-input" style="margin-right: 20px;">
+						<div class="input-group">
+							<span class="input-group-addon add-bg" style="padding: 0 5px;width: 60px;">在</span>
+							<select type="tel" class="form-control" ng-model="query.round" style="width: 190px;">
+							    <option value="1w">周(7天)</option>
+								<option value="1m">月(30天)</option>
+								<option value="1y">年(365天)</option>
+							</select>
+						</div>
+					</div>
+					<div class="toogle-input">
+						<div class="input-group">
+							<span class="input-group-addon add-bg" style="padding: 0 5px;">上号不少于</span>
+							<input type="number" class="form-control" ng-model="query.days">
+							<i class="empty-input" style="">天</i>
+						</div>
+					</div>
+					<div class="toogle-input">
+						<div class="input-group">
+							<span class="input-group-addon add-bg" style="padding: 0 5px;">满足上述条件不少于</span>
+							<input type="number" class="form-control" ng-model="query.times">
+							<i class="empty-input" style="">次</i>
+						</div>
+					</div>
+					<button class="btn btn-primary" ng-click="sureResult()" style="position: absolute;right: 20px;">保存</button>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+		<!-------------------------------------常驻人口规则设置-end----------------------------------->
+		
+		<!-------------------------------------通知模板设置-begin----------------------------------->	
+		<div class="system-mt" ng-controller="SystemConfigureCtrl">
+			<div class="system-mestel" style="border-top: 5px solid #93d3b6; background: #f4f4f4;">
+			<div class="system-topfont">
+				<p class="ml-20">通知模板设置</p>
+			</div>
+			<div class="form form-inline safeSet" style="margin-left: 20px; position: relative;">
+				<div class="toogle-input">
+					<div class="input-group">
+						<span class="input-group-addon add-bg" style="padding: 0 5px;">模板名称</span>
+						<input type="text" class="form-control" ng-model="query.tplName">
+						<i class="fa fa-times empty-input"></i>
+						
+					</div>
+				</div>
+				<div class="toogle-input" style="margin-right: 20px;">
+					<div class="input-group">
+						<span class="input-group-addon add-bg" style="padding: 0 5px;">启用状态</span>
+						<select type="tel" class="form-control" ng-model="query.tplUsed" style="width: 190px;">
+						    <option value="">全部</option>
+							<option value="1">启用</option>
+							<option value="0">未启用</option>
+						</select>
+					</div>
+				</div>
+				<div class="toogle-input">
+					<div class="input-group">
+						<span class="input-group-addon add-bg" style="padding: 0 5px;">模板类型</span>
+						<select class="form-control" ng-model="query.tplType" style="width: 190px;">
+						    <option value="">全部</option>
+						    <option value="0">目标告警模板</option>
+							<option value="1">设备告警模板</option>
+							<option value="2">系统告警模板</option>
+							<!-- <option value="2">异地告警模板</option> -->
+						</select>
+					</div>
+				</div>
+				<button class="btn btn-primary" ng-click="searchTplResult()" style="position: absolute;right: 20px;">查询</button>
+			</div>
+			<div class="ng-grid-container">
+				<div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns ui-grid-move-columns auto-height style="background: #f4f4f4;"></div>
+			</div>
+		</div>
+		<!-------------------------------------通知模板设置-end----------------------------------->
+	</div>
+</div>

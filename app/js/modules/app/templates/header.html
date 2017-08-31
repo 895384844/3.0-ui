@@ -1,0 +1,55 @@
+<header class="main-header" ng-controller="HeaderCtrl">
+	<!-- Logo -->
+	<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> 
+		<span class="logo-mini"><b>EFS</b></span> <!-- logo for regular state and mobile devices -->
+		<span class="logo-lg"><b>手机侦测平台</b></span>
+	</a>
+	<!-- Header Navbar: style can be found in header.less -->
+	<nav class="navbar navbar-static-top" role="navigation">
+		<!-- Sidebar toggle button-->
+		<a href="javascript:void(0)" class="sidebar-toggle" data-toggle="offcanvas" role="button"> 
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span> 
+			<span class="icon-bar"></span> 
+			<span class="icon-bar"></span>
+		</a>
+		<div class="navbar-custom-menu">
+			<ul class="nav navbar-nav">
+				<li class="user user-menu"><a myx-fast-click ng-click="logout()">
+					退出</a></li>
+				<li class="dropdown user user-menu notifications-menu">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown"> {{userName || '未知用户'}}</a>
+					<ul class="dropdown-menu" style="width: 66px">
+						<li>
+							<ul class="menu">
+								<li>
+									<a myx-fast-click ng-click="showChangePwd()">
+										<i class="fa fa-edit text-aqua"></i> 修改密码
+									</a>
+								</li>
+								<li>
+									<a myx-fast-click ng-click="lockScreen()">
+										<i class="fa fa-lock text-yellow"></i> 锁定屏幕
+									</a>
+								</li>
+								<li>
+									<a myx-fast-click ng-click="showSystemInfo()"> 
+										<i class="fa fa-gear text-red"></i> 系统信息
+									</a>
+								</li>
+								<li>
+									<a myx-fast-click ng-click="showHelp()">
+										<i class="fa fa-book text-green"></i> 帮助文档
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- User Account: style can be found in dropdown.less -->
+				<!-- Control Sidebar Toggle Button -->
+				<!-- <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li> -->
+			</ul>
+		</div>
+	</nav>
+</header>

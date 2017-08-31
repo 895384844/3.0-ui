@@ -1,0 +1,40 @@
+<div class="content content-column" ng-controller="TraceLogCtrl">
+	<!--终端轨迹跟踪-->
+	<div class="condition" style="border: 1px solid #ccc;border-bottom: none; padding-left: 0;">
+		<form class="form" role="form" name="form">
+			<div class="pl-0" ng-class="{true: 'alwaysShow', false: 'toogleShow'}[isActive]">			
+				<div class="toogle-input col-sm-3 pr-5">
+					<div class="toogle-input">
+						<div class="input-group">
+							<span class="input-group-addon add-bg p5">IMSI</span>
+							<input type="text" class="form-control" maxlength="15" ng-model="query.imsi">
+							<i class="fa fa-times empty-input"></i>
+							
+						</div>
+					</div>
+				</div>
+				<div class="toogle-input col-sm-3 pr-5" style="margin-left: 10px;">
+					<div class="input-group">
+						<span class="input-group-addon add-bg p5">开始时间</span>
+						<input class="form-control datetime" placeholder="开始时间" date-time-selector="start" ng-model="query.startTime" ignore-empty-value/>
+					</div>
+				</div>
+				<div class="toogle-input col-sm-3 pr-5" style="margin-left: -10px;">
+					<div class="input-group">
+						<span class="input-group-addon add-bg p5">结束时间</span>
+						<input class="form-control datetime" placeholder="结束时间" date-time-selector="start" ng-model="query.endTime" ignore-empty-value/>
+					</div>
+				</div>				
+			</div>
+			<button class="btn btn-primary searchBtn" ng-click="search()" style="right: 80px;">查询</button>
+			<button class="btn btn-info searchBtn" ng-click="showMap()" style="right: 20px;">轨迹</button>
+		</form>
+		<!--查询条件框需折行显示时，将下面代码取消注释-->
+		<div ng-click="toogleH()" class="toogle-btn" ng-if="isShow">
+			<img src="images/down.png" ng-if="isActive"/>
+			<img src="images/up.png" ng-if="!isActive" />
+		</div>
+
+	</div>
+	<div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns ui-grid-move-columns auto-height style="-webkit-flex: 1;"></div>
+</div>

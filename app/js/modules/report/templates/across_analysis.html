@@ -1,0 +1,59 @@
+<div class="content content-flex" id="con" layout="row" ng-controller="AcrossAnalysisCtrl" style="padding:0;">
+	<!--碰撞分析-->
+	<form class="form form-inline " ng-class="{'form-flex':currentW,'form-flex-hide':changeW}" role="form" name="form" height-bind=".grid" id="acc_resize">
+		<div class="row addBorder scroll-y" style="position: relative; height:100%;">
+			<div class="toogleLeftState " ng-class="{'':currentW,'dis_none':changeW}">
+				<div class="col-lg-12" style="height: 38px;">
+					<div class="input-group">
+						<button class="btn btn-primary" ng-click="addCondition()">添加碰撞点</button>
+						<button class="btn btn-primary" ng-click="search()" style="margin-left: 6px;">查询</button>
+					</div>
+				</div>
+				<div class="qualification col-lg-12" style="position: absolute;left: 6px; top: 35px;padding:0 10px;">
+					<div class="top-menu">
+						<span>采集设备</span>
+						<span>开始</span>
+						<span>结束</span>
+					</div>
+					<ul>
+						<li class="lis">
+							<div class="input-group" style="width: 100%;">
+								<select class="pd-right col-lg-3" ng-model="query[0].groupId" name="name" required>
+									<option ng-repeat="group in groupArray" value="{{group.id}}">{{group.groupName}}</option>
+								</select>
+								<input class="val datetime col-lg-4" placeholder="开始时间" date-time-selector="start" ng-model="query[0].startTime" ignore-empty-value/>
+								<input class="datetime col-lg-4" placeholder="结束时间" date-time-selector="start" ng-model="query[0].endTime" ignore-empty-value/>
+							</div>
+						</li>
+						<li class="lis">
+							<div class="input-group" style="width: 100%;">
+								<select class="pd-right col-lg-3" ng-model="query[1].groupId" name="name" required>
+									<option ng-repeat="group in groupArray" value="{{group.id}}">{{group.groupName}}</option>
+								</select>
+								<input class=" datetime col-lg-4" placeholder="开始时间" date-time-selector="start" ng-model="query[1].startTime" ignore-empty-value/>
+								<input class="datetime col-lg-4" placeholder="结束时间" date-time-selector="start" ng-model="query[1].endTime" ignore-empty-value/>
+							</div>
+						</li>
+						<li ng-repeat="person in list" class="lis" style="height: 23px;">
+							<div ng-class="input-group">
+								<select class="pd-right col-lg-3" ng-model="person.groupId" name="name" required>
+									<option ng-repeat="group in groupArray" value="{{group.id}}">{{group.groupName}}</option>
+								</select>
+								<input class=" datetime col-lg-4" placeholder="开始时间" date-time-selector="start" ng-model="person.startTime" ignore-empty-value/>
+								<input class="datetime col-lg-4" placeholder="结束时间" date-time-selector="start" ng-model="person.endTime" ignore-empty-value/>
+							</div>
+							<button ng-click="delEle($index)" ng-show="$index>=0" style="margin-right: 14px;"><i class="fa fa-trash"></i></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div ng-class="{'toogle-width':currentW,'toogle-width-hide':changeW}" ng-click="toogleLeftState()">
+				<p></p>
+			</div>
+		</div>
+	
+	</form>
+	<div class="right-grid acr-grid" style="overflow: hidden;">
+		<div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns ui-grid-move-columns class="grid" auto-height></div>
+	</div>
+</div>

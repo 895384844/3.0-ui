@@ -1,0 +1,177 @@
+<div ng-controller="HomepageCtrl" style="overflow: hidden; height: 1500px;">
+	<section class="content" style="background: #fff;" id="getWidth">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="box box-info oh bkf7 dis-flex-c" style="height: 409px;">
+					<div class="box-header with-border" style="border-bottom: 1px solid #ccc;">
+						<h3 class="box-title fwb" style="color: #555;">设备列表</h3>
+						<!--<div class="box-tools">
+			                <ul class="pagination pagination-sm no-margin pull-right">
+			                  <li><a href="">&laquo;</a></li>
+			                  <li><a href="">1</a></li>
+			                  <li><a href="">2</a></li>
+			                  <li><a href="">3</a></li>
+			                  <li><a href="">&raquo;</a></li>
+			                </ul>
+			            </div>-->
+					</div>
+					<div class="box-body w100 bkf7 flex-1" style=" padding: 0;height: 80%; overflow-y: scroll;">
+						<table class="w100 tac" style=" border-color: #ccc;border-bottom: 1px solid #ccc;">
+							<tr class="linear" style="height: 34px;">
+								<td class="brc-t"style="width: 80px;border-right: none;background:-webkit-gradient(linear, 0% 0, 0% 100%,from(#fdfdfd), to(#f0f0f0));">组号</td>
+								<td class="brc-t">设备号</td>
+								<td class="brc-t">在线状态</td>
+								<td class="brc-t">BTS</td>
+								<td>最后一次上号时间</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<!-- /.box-body -->
+					<div class="box-footer bkf7 pos-r">	
+						<div class="device-state col-lg-7 col-md-7">
+							<img src="images/green.png" alt="" />
+							<span class="mr-10">: 80</span>
+							<img src="images/grey.png" alt="" />
+							<span class="mr-10">: 120</span>
+							<span style="font-weight: bold;">N/A : </span>
+							<span class="mr-10">150</span>
+						</div>
+						<button class="more-btn pos-a" title="跳转到设备列表页面">
+							<span ng-click="addSection(menus[1].subMenus[0])">更多  <i class="fa fa-arrow-circle-right"></i></span>
+						</button>
+					</div>
+				</div>
+				<!-- /.box -->
+
+				<!-- DONUT CHART -->
+				<div class="box box-info dis-flex-c bkf7" style="border-top-color: #f39c11;height: 409px;overflow: hidden;">
+					<div class="box-header with-border">
+						<h3 class="box-title fwb" style="color: #555;">上号信息</h3>
+					</div>
+					<div class="box-body flex-1" style="display: -webkit-flex;">
+						<div class="statistics col-lg-4 col-md-4">
+							<span><i class="fa fa-database"></i> 全库总上号量</span>
+							<p>360000000</p>
+							<span><i class="fa fa-line-chart"></i> 当天上号总量</span>
+							<p style="color: #59678c;">15000</p>
+						</div>
+						<div class="statistics-charts col-lg-8 col-md-8">
+							<div class="barChart" id="barChart" style="width: 100%;height: 100%;"></div>
+						</div>
+					</div>
+
+					<div class="box-footer bkf7 pos-r">						
+						<button class="more-btn pos-a" title="跳转到统计流量分析页面">
+							<span ng-click="addSection(menus[3].subMenus[4])">更多  <i class="fa fa-arrow-circle-right"></i></span>
+						</button>
+					</div>
+				</div>
+				<!-- /.box -->
+
+			</div>
+			<!-- /.col (LEFT) -->
+			<div class="col-md-6">
+				<!-- LINE CHART -->
+				<div class="box box-info dis-flex-c bkf7" style="border-top-color: #de4b39;height: 409px;">
+					<div class="box-header with-border">
+						<h3 class="box-title fwb" style="color: #555;">系统信息</h3>
+					</div>
+					<div class="box-body flex-1">
+						<div class="operating-state">
+							<dl>
+								<dt><img src="images/red1.png" /></dt>
+								<dd>EFS服务进程状态</dd>
+							</dl>
+							<dl>
+								<dt><img src="images/green-0.png" /></dt>
+								<dd>Httpd运行状态</dd>
+							</dl>
+							<dl>
+								<dt><img src="images/green-0.png" /></dt>
+								<dd>Redis运行状态</dd>
+							</dl>
+							<dl>
+								<dt><img src="images/green-0.png" /></dt>
+								<dd>Mysql运行状态</dd>
+							</dl>
+							<dl>
+								<dt><img src="images/green-0.png" /></dt>
+								<dd>Tomcat运行状态</dd>
+							</dl>
+						</div>
+						<div class="cpu-state">
+							<div class="cpu col-lg-12 col-md-12">
+								<div id="cpuChart" style="width: 100%;height:230px;margin-top: -20px;"></div>
+							</div>
+							<div class="license" style="width: 115%;">
+								<div class="license-progress col-lg-6 col-md-6">
+									<span class="col-lg-3 col-md-3">License</span>
+									<div class="demo col-lg-9 col-md-9">
+										<div class="progress">
+										<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 65%;"></div>
+				</div>
+									</div>
+								</div>
+								<p class="col-lg-6 col-md-6">
+									<span><img src="images/overdue.png" alt="" /></span>
+									<span><img src="images/un-overdue.png" alt="" /></span>
+									<span><img src="images/already-overdue.png" alt="" /></span>
+								</p>
+							</div>												
+						</div>						
+					</div>
+					<!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+
+				<!-- BAR CHART -->
+				<div class="box box-info dis-flex-c bkf7" style="border-top-color: #3b8dbc;height: 409px;">
+					<div class="box-header with-border">
+						<h3 class="box-title fwb" style="color: #555;">归属地</h3>
+					</div>
+					<div class="box-body flex-1" style="display: -webkit-flex;">
+						<!--<div class="legend">
+						
+						</div>-->
+						<div class="legend-charts flex-1">
+							<div class="legend-chart" id="legend-chart" style="width: 80%; margin-left: 10%;"></div>
+						</div>
+					</div>
+
+					<div class="box-footer bkf7 pos-r">						
+						<button class="more-btn pos-a" title="跳转到归属地统计页面">
+							<span ng-click="addSection(menus[3].subMenus[5])">更多  <i class="fa fa-arrow-circle-right"></i></span>
+						</button>
+					</div>
+				</div>
+				<!-- /.box -->
+			</div>
+			<!-- /.col (RIGHT) -->
+			<div ng-controller="MapMainCtrl" class="col-md-12" style="height: 600px; margin-bottom: 20px;">
+				<div class="box box-info h100 dis-flex-c bkf7" style="border-top-color: #92d3b5;">
+					<div class="box-header with-border">
+						<h3 class="box-title fwb" style="color: #555;">地理视图</h3>
+					</div>
+					<div class="box-body flex-1">
+						<baidu-map  options="mapOptions" online="isOnline" ak="" class="map"></baidu-map>
+					</div>
+					<div class="box-footer bkf7 pos-r" style="height: 46px;padding: 2px;">						
+						<button class="more-btn pos-a" title="跳转到设备列表页面" style="margin-top: 5px;">
+							<span ng-click="addSection(menus[1].subMenus[0])">更多  <i class="fa fa-arrow-circle-right"></i></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!-- /.row -->
+	</section>
+
+</div>

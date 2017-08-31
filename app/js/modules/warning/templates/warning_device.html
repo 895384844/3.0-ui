@@ -1,0 +1,58 @@
+<div class="content content-column" ng-controller="WarningDeviceCtrl">
+	<div class="condition" style="border: 1px solid #ccc;border-bottom: none;">
+		<div ng-class="{true: 'alwaysShow', false: 'toogleShow'}[isActive]">
+			<div class="toogle-input">
+				<div class="input-group w100">
+						<span class="input-group-addon add-bg">设备名称</span>
+						<select class="form-control" ng-model="query.name">
+							<option value="">全部</option>
+							<option ng-repeat="device in deviceArray" value="{{device.identity}}">{{device.name}}</option>
+						</select>
+					</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group w100">
+						<span class="input-group-addon add-bg">告警级别</span>
+						<select class="form-control" ng-model="query.alarmLevel">
+							<option value="0">全部</option>
+							<option value="4">严重告警</option>
+							<option value="3">重要告警</option>
+							<option value="2">次要告警</option>
+							<option value="1">一般告警</option>
+						</select>
+					</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group w100">
+						<span class="input-group-addon add-bg">时间范围</span>
+						<input class="form-control datetime" placeholder="开始时间" date-time-selector="start" ng-model="query.logDate__ge__$DATE" ignore-empty-value/>
+					</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group w100">
+						<span class="input-group-addon add-bg" style="width: 80px;">至</span>
+						<input class="form-control datetime" placeholder="结束时间" date-time-selector="start" ng-model="query.logDate__le__$DATE" ignore-empty-value/>
+					</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group w100">
+						<span class="input-group-addon add-bg">告警原因</span>
+						<select class="form-control" ng-model="query.alarmCause">
+							<option value="0">全部</option>
+							<option value="1">设备不在线</option>
+							<option value="2">长时间不上号</option>
+						</select>
+					</div>
+			</div>
+		</div>
+		<button class="btn btn-primary searchBtn" ng-click="search()" style="right: 30px;">查询</button>
+			
+		<!--查询条件框需折行显示时，将下面代码取消注释-->
+		<div ng-click="toogleH()" class="toogle-btn" ng-if="isShow">
+			<img src="images/down.png" ng-if="isActive"/>
+			<img src="images/up.png" ng-if="!isActive" />
+		</div>
+		
+	</div>	
+	<div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns ui-grid-move-columns class="grid" auto-height></div>
+</div>

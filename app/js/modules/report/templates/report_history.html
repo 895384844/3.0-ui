@@ -1,0 +1,64 @@
+<div class="content content-column" ng-controller="ReportHistoryCtrl">
+	<div class="condition" style="border: 1px solid #ccc;border-bottom: none;">
+		<div ng-class="{true: 'alwaysShow', false: 'toogleShow'}[isActive]">
+			<div class="toogle-input">
+				<div class="input-group w100">
+					<span class="input-group-addon add-bg">组名称(必填)</span>
+					<select class="form-control pd-right" ng-model="query.groupId">
+						<option value="">全部</option>
+						<option ng-repeat="group in groupArray" value="{{group.groupId}}">{{group.groupName}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group w100">
+					<span class="input-group-addon add-bg">终端网络供应商</span>
+					<select class="form-control pd-right" ng-model="query.netProvider">
+						<option value="0">全部</option>
+						<option value="1">移动</option>
+						<option value="2">联通</option>
+						<option value="3">电信</option>
+						<option value="4">其他(境外)</option>
+					</select>
+				</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group">
+					<span class="input-group-addon add-bg">时间范围</span>
+					<input class="form-control datetime" placeholder="开始时间" date-time-selector="start" ng-model="query.logDate__ge__$DATE" ignore-empty-value/>
+				</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group">
+					<span class="input-group-addon add-bg" style="width: 80px;">至</span>
+					<input class="form-control datetime" placeholder="结束时间" date-time-selector="start" ng-model="query.logDate__le__$DATE" ignore-empty-value/>
+				</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group">
+					<span class="input-group-addon add-bg">IMSI</span>
+					<input type="text" class="form-control" maxlength="15" ng-model="query.imsi">
+					<i class="fa fa-times empty-input"></i>					
+				</div>
+			</div>
+			<div class="toogle-input">
+				<div class="input-group">
+					<span class="input-group-addon add-bg">IMEI</span>
+					<input type="text" class="form-control" maxlength="15" ng-model="query.imei">
+					<i class="fa fa-times empty-input"></i>					
+				</div>
+			</div>		
+		</div>
+		<button class="btn btn-primary searchBtn" ng-click="search()" style="right: 30px;">查询</button>
+			
+		<!--查询条件框需折行显示时，将下面代码取消注释-->
+		<div ng-click="toogleH()" class="toogle-btn" ng-if="isShow">
+			<img src="images/down.png" ng-if="isActive"/>
+			<img src="images/up.png" ng-if="!isActive" />
+		</div>
+		
+	</div>	
+	
+	<div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns ui-grid-move-columns class="grid" auto-height></div>
+
+</div>
